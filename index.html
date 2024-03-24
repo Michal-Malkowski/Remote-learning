@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Ankieta dotycząca nauki zdalnej</title>
+        <style>
+            body{
+                background-color: #F0F8FF;
+            }
+
+            h1 {
+                color: #00008B;
+                font-family: Calibri
+                font-size: 5000px;
+                margin-left: 100px;
+                margin-top: 100px;
+            }
+
+            h2 {
+                color: 	#0000CD;
+                font-family: Calibri
+                font-size: 1500px;
+                margin-left: 0px;
+            }
+
+            form {
+                color: 	#4682B4;
+                font-family: Calibri
+                font-size: 1200px;
+                margin-left: 100px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h1>Ankieta dotycząca nauki zdalnej</h1>
+            <br>
+            <form action="/" method="post">
+                {% for question in data %}
+                <h2>{{ question.question }}</h2>
+                    {% for answer in question.answers %}
+                        <input type="{{question.type}}" id="{{ answer }}" name="{{ question.id }}" value="{{ answer }}" required> {{ answer }}<br>
+                        <script>
+                            if("{{question.type}}" == "checkbox")
+                                document.getElementById("{{ answer }}").required = false
+                        </script>
+                    {% endfor %}
+                {% endfor %}
+                <br>
+                <input type="submit" value="Wyślij" name="Submit"/>
+            </form>
+        </div>
+    </body>
+
+
+</html>
